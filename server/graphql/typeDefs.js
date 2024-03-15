@@ -4,6 +4,7 @@ export const typeDefs = gql`
   type Query {
     hello: String
     projects: [Project]
+    project(_id:ID!):Project
     tasks: [Task]
   }
 
