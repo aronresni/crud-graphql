@@ -1,11 +1,13 @@
-
 import "App.css"
+import {Routes, Route} from "react-router-dom"
+import Project from "./Pages/Project";
 
 
 export default function App() {
   return (
-    <div>
-      <h2>My first Apollo app 🚀</h2>
-    </div>
+  
+    <Routes>
+      <Route path="/projects" element={<Project/>}/>
+    </Routes>
   );
 }
