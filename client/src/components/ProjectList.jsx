@@ -9,7 +9,7 @@ const ProjectList = () => {
 	if (error) return <p>Error :(</p>;
 
 	return (
-		<div className="overflow-y-auto w-3/5 w-full px-5">
+		<div className="overflow-y-auto w-3/5 px-5">
 			{data.projects.map((project) => (
 				<ProjectCard key={project._id} project={project} />
 			))}

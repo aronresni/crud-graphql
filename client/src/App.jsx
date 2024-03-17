@@ -1,14 +1,34 @@
-import "./App.css"
-import {Routes, Route} from "react-router-dom"
-import Project from "./Pages/Project";
-import ProjectDetail from "./Pages/ProjectDetail"
+import {
+	BrowserRouter,
+	Route,
+	Routes,
+	Navigate,
+} from "react-router-dom";
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import "./main.css"
+// pages
+import ProjectDetails from './Pages/Project'
+import Projects from './Pages/ProjectDetail'
 
-export default function App() {
-  return (
-  
-    <Routes>
-      <Route path="/projects" element={<Project/>}/>
-      <Route path="/projectDetail:id" element={<ProjectDetail/>} />
-    </Routes>
-  );
-}
+const client  = new ApolloClient({
+	uri: 'http://localhost:4000/graphql',
+	cache: new InMemoryCache()
+});
+
+const App = () => {
+	return (
+		<ApolloProvider client={client}>
+			<BrowserRouter>
+				<div className="container m-auto h-screen flex items-center justify-center">
+					<Routes>
+						<Route path="/" element={<Navigate to="/projects" replace />} />
+						<Route path="/projects" element={<Projects/>} />
+						<Route path="/projects/:id" element={<ProjectDetails/>} />
+					</Routes>
+				</div>
+			</BrowserRouter>
+		</ApolloProvider>
+	);
+};
+
+export default App;
